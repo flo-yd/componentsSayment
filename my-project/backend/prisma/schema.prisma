@@ -11,11 +11,16 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 model User {
   id    Int    @id @default(autoincrement())
-  name  String
+  name  String @db.Char(20)
   email String @unique
 }
+
+model Toggle {
+  id      Int    @id @default(autoincrement())
+  isOpen  Boolean @default(false) 
+}
+

@@ -1,4 +1,4 @@
-
+/* 
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -68,4 +68,10 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+.container {
+  width: 100px;
+  height: 200px;
+  background-color: black;
 }

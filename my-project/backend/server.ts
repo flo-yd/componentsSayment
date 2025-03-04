@@ -1,34 +1,47 @@
-import express, { Request, Response } from "express";
-import cors from "cors";
-import * as dotenv from "dotenv";
-import { PrismaClient } from "@prisma/client";
+import express, { Request, Response, Router } from 'express';
+import cors from 'cors';
+import { PrismaClient } from '@prisma/client';
 
-// Load environment variables
-dotenv.config();
-
-// Initialize Prisma Client
 const prisma = new PrismaClient();
-
-// Create Express app
 const app = express();
+const PORT = 3002;
 
-// Middleware
+const router: Router = Router();
+
 app.use(cors());
 app.use(express.json());
 
-// Example API route with proper TypeScript types
-app.get("/api/users", async (req: Request, res: Response) => {
+// Route to toggle isOpen
+
+router.put('/api/toggle/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { isOpen } = req.body;
+
   try {
-    const users = await prisma.user.findMany();
-    res.json(users);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    // Update the isOpen field
+    const updatedToggle = await prisma.toggle.update({
+      where: { id: Number(id) },
+      data: { isOpen },
+    });
+
+    res.status(200).json(updatedToggle);
+  } catch {
+    res.status(500).json({ error: 'Failed to update toggle' });
   }
 });
 
-// Start the server
-const PORT = process.env.PORT || 5000;
+// Route to fetch all toggles
+router.get('/toggles', async (req: Request, res: Response) => {
+  try {
+    const toggles = await prisma.toggle.findMany();
+    res.status(200).json(toggles);
+  } catch {
+    res.status(500).json({ error: 'Failed to fetch toggles' });
+  }
+});
+
+app.use("/floyd", router)
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`Backend server running on http://localhost:${PORT}`);
 });
