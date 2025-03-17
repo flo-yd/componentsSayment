@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Modern JavaScript features
+    "module": "CommonJS", // Use CommonJS modules
+    "rootDir": "./src", // Source files location
+    "outDir": "./dist", // Compiled JavaScript output location
+    "strict": true, // Enable all strict type-checking options
+    "esModuleInterop": true, // Enable ES module interop
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true // Ensure consistent file casing
+  },
+  "include": ["src/**/*"], // Include all files in src
+  "exclude": ["node_modules"] // Exclude node_modules
+}
