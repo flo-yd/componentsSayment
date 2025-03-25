@@ -19,7 +19,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ employees, onDeleteEmploy
                   </span>
                   <span className="text-sm text-gray-500">Group: {employee.groupName}</span>
                   <span className="text-sm text-gray-500 ml-2">Role: {employee.role}</span>
-                  <span className="text-sm text-gray-500">Salary: ${employee.expectedSalary}</span>
+                  <span className="text-sm text-gray-500">Salary: {"₱" + employee.expectedSalary}</span>
                   <span className="text-sm text-gray-500 ml-2">Defense: {employee.expectedDateOfDefense}</span>
               <Button label="Delete" onClick={() => onDeleteEmployee(employee.id)} />
               <Button label="Edit" onClick={() => onEditEmployee(employee)} />

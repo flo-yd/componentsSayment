@@ -19,6 +19,6 @@ model Employee {
   lastName               String
   groupName              String
   role                   String
-  expectedSalary         Float
+  expectedSalary         Decimal  @default(0)
   expectedDateOfDefense  String
 }

@@ -79,7 +79,7 @@ export const deleteEmployee = async (req: Request, res: Response): Promise<void>
 
 export const updateEmployee = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const { id, firstName, lastName, groupName, role, expectedSalary, expectedDateOfDefense } = req.body;
     const employeeId = parseInt(id);
     
     if (isNaN(employeeId)) {
@@ -95,8 +95,6 @@ export const updateEmployee = async (req: Request, res: Response): Promise<void>
       res.status(404).json({ error: 'Employee not found' });
       return;
     }
-
-    const { firstName, lastName, groupName, role, expectedSalary, expectedDateOfDefense } = req.body;
 
     if (!firstName || !lastName) {
       res.status(400).json({ error: 'First name and last name are required' });

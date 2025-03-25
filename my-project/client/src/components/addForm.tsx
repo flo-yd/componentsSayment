@@ -34,6 +34,8 @@ const AddForm: React.FC<EmployeeFormProps> = ({ onAddEmployee }) => {
     ) {
       alert("All fields are required");
       return;
+        } else if (isNaN(Number(formData.expectedSalary))) {
+      alert("Expected Salary must be a number!");
     }
 
     const newEmployee = {

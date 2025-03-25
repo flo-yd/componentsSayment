@@ -1,11 +1,11 @@
 interface EmployeeProps {
+  id: number; 
   firstName: string;
   lastName: string;
   groupName: string;
   role: string;
-  expectedSalary: number;
+  expectedSalary: number | null;
   expectedDateOfDefense: string;
-  id: number;
 }
 
 interface ListComponentProps {
@@ -16,7 +16,7 @@ interface ListComponentProps {
 
 interface InputFieldProps {
   title: string;
-  value: string;
+  value: string | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
 }
