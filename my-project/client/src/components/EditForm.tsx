@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { EmployeeProps } from "../types/Props";
-import InputField from "./inputField";
+import InputField from "./InputField";
 import Button from "./Button";
 
 interface EditFormProps {
   employee: EmployeeProps;
   onSave: (id: number, updatedData: Partial<EmployeeProps>) => void; 
-  onCancel: () => void;
 }
 
-const EditForm: React.FC<EditFormProps> = ({ employee, onSave, onCancel }) => {
+const EditForm: React.FC<EditFormProps> = ({ employee, onSave}) => {
   const [formData, setFormData] = useState<Partial<Omit<EmployeeProps, 'expectedSalary'> & { expectedSalary: number | null }>>({
     firstName: employee.firstName,
     lastName: employee.lastName,
@@ -41,7 +40,6 @@ const EditForm: React.FC<EditFormProps> = ({ employee, onSave, onCancel }) => {
       
       <div className="flex justify-end gap-2 mt-4">
         <Button label="Save" onClick={() => onSave(employee.id, formData)} /> 
-        <Button label="Cancel" onClick={onCancel} />
       </div>
     </div>
   );

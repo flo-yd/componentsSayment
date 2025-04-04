@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputField from "./inputField";
+import InputField from "./InputField";
 import Button from "./Button";
 import { EmployeeFormData, EmployeeFormProps } from "../types/Props";
 

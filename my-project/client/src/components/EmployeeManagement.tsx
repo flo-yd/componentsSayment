@@ -1,10 +1,11 @@
 "use client";
 import { useEffect } from "react";
-import AddForm from "./addForm";
-import ListComponent from "./listComponent";
+import ListComponent from "./TableList";
 import EditForm from "./EditForm";
-import Modal from "./modal";
+import Modal from "./Modal";
 import useEmployees from "../helpers/Helpers";
+import AddFormModal from "./AddFormModal";
+
 
 const EmployeeTable: React.FC = () => {
   const {
@@ -19,22 +20,24 @@ const EmployeeTable: React.FC = () => {
     selectedEmployee,
   } = useEmployees();
 
-  // Ensure fetchEmployees only runs on mount
+
     useEffect(() => {
     fetchEmployees();
   }, [fetchEmployees]);
 
+
   return (
     <div>
-      <AddForm onAddEmployee={handleAddEmployee} />
+
+      <AddFormModal onAddEmployee={handleAddEmployee}/>
+
       <ListComponent employees={employees} onDeleteEmployee={handleDeleteEmployee} onEditEmployee={handleOpenEditModal} />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {selectedEmployee && (
           <EditForm
             employee={selectedEmployee}
-            onSave={handleEditEmployee} // Pass the correct function
-            onCancel={() => setIsModalOpen(false)}
+            onSave={handleEditEmployee} 
           />
         )}
       </Modal>

@@ -25,6 +25,7 @@ const useEmployees = () => {
     })
       .then((response) => response.json())
       .then((data) => setEmployees([...employees, data]))
+      
       .catch((error) => console.error("Error adding employee:", error));
   };
 

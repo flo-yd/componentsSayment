@@ -1,5 +1,5 @@
 import './index.css'
-import EmployeeTable from "./components/employeeTable";
+import EmployeeTable from "./components/EmployeeManagement";
 
 function App() {
   return (
