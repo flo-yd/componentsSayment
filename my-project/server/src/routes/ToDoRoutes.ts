@@ -20,11 +20,13 @@ export async function addTask(req: Request, res: Response): Promise<void> {
   const { type, title, dueDate, notes } = req.body;
 
   try {
+    const parsedDueDate = dueDate && typeof dueDate === "string" && dueDate.trim() !== "" ? new Date(dueDate) : undefined
+    console.log("Parsed dueDate:", parsedDueDate)
     const task = await prisma.task.create({
       data: {
         type,
         title,
-        dueDate,
+        dueDate: parsedDueDate,
         notes,
       },
     });

@@ -10,7 +10,7 @@ export interface Task {
     type: TaskType;
     title: string;
     notes?: string;
-    dueDate?: Date;
+    dueDate?: Date | string;
     onDelete?: (id: string) => void;
   }
   
@@ -74,13 +74,13 @@ export const ToDo = () => {
           tasks.map((task) => (
             <div key={task.id}>
               <TaskFactory 
-                id={task.id}
-                type={task.type} 
-                title={task.title} 
-                notes={task.notes}
-                dueDate={task.dueDate}
-                onDelete={handleTaskDeleted}
-              />
+              id={task.id}
+              type={task.type} 
+              title={task.title} 
+              notes={task.notes}
+              dueDate={task.dueDate}
+              onDelete={handleTaskDeleted}
+              />     
             </div>
           ))
         ) : (

@@ -1,10 +1,12 @@
+import { toast } from "react-toastify";
+
 export type TaskType = 'basic' | 'timed' | 'checklist';
 
 export interface TaskProps {
   type: TaskType;
   title: string;
   notes?: string;
-  dueDate?: Date; 
+  dueDate?: string; 
 }
 
 export const fetchTasks = async () => {
@@ -22,12 +24,22 @@ export const fetchTasks = async () => {
 
 export const addTask = async (task: TaskProps) => {
   try {
+    // For timed tasks, ensure dueDate is properly formatted when sending to the server
+    const taskToSend = {
+      ...task,
+      // If dueDate exists, convert it properly accounting for timezone
+      dueDate: task.dueDate ? convertLocalToUTC(task.dueDate) : undefined
+    };
+
     const response = await fetch('http://localhost:3000/api/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(taskToSend),
+    });
+    toast.success("Task added successfully", {
+      position: "top-right",
     });
     
     if (!response.ok) {
@@ -41,19 +53,30 @@ export const addTask = async (task: TaskProps) => {
   }
 }
 
+// Helper function to convert local datetime-local input to UTC
+function convertLocalToUTC(localDateTimeString: string): string {
+  // Create a date object from the local datetime string
+  const date = new Date(localDateTimeString);
+  
+  // Return the date in ISO format, which will include timezone info
+  return date.toISOString();
+}
+
 export const removeTask = async (id: string) => {
   try {
     const res = await fetch(`http://localhost:3000/api/tasks/${id}`, {
       method: "DELETE",
-    })
+    });
+    toast.success("Task deleted successfully", {
+      position: "top-right",});
 
     if (!res.ok) {
-      throw new Error("Failed to delete task")
+      throw new Error("Failed to delete task");
     }
 
-    return await res.json()
+    return await res.json();
   } catch (error) {
-    console.error("Error deleting task:", error)
-    throw error
+    console.error("Error deleting task:", error);
+    throw error;
   }
 }
