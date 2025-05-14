@@ -86,7 +86,7 @@ export const Header: React.FC<HeaderProps> = ({ onTaskAdded }) => {
   };
 
   return (
-    <div className="bg-blue-50 py-6 px-4 shadow-md">
+    <div className="bg-blue-50 py-6 px-4 shadow-md w-full">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Input 
