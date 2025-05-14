@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
-import Button from "./Button";
+import { EmployeeButton } from "./Button";
 import { EmployeeFormData, EmployeeFormProps } from "../types/Props";
 import Modal from "./Modal";
 
@@ -64,7 +64,7 @@ const AddFormModal: React.FC<EmployeeFormProps> = ({ onAddEmployee }) => {
 
     return (
       <>
-      <Button label="Add Employee" onClick={() => setModalOpen(true)} />
+      <EmployeeButton label="Add Employee" onClick={() => setModalOpen(true)} />
       <Modal isOpen={ModalOpen} onClose={() => setModalOpen(false)}>
         <div className="bg-gray-100 p-5 pr-10 rounded-md shadow-md">
           <div className="grid grid-cols-1  gap-4 mb-4 ">
@@ -100,7 +100,7 @@ const AddFormModal: React.FC<EmployeeFormProps> = ({ onAddEmployee }) => {
               onChange={(e) => handleInputChange("expectedDateOfDefense", e.target.value)}
             />
           </div>
-          <Button label="Add Employee" onClick={handleSubmit} />
+          <EmployeeButton label="Add Employee" onClick={handleSubmit} />
         </div>
       </Modal>
       </>

@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import { getEmployees, createEmployee, deleteEmployee, updateEmployee } from './routes/employeeRoutes';
+import { getToDoList, deleteTask, addTask } from './routes/ToDoRoutes';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const app: Express = express();
 const PORT = process.env.PORT || 3000;
 
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 
 app.use(cors());
@@ -24,6 +25,10 @@ app.post('/employees', createEmployee);
 app.delete('/employees/:id', deleteEmployee);
 app.put('/employees', updateEmployee);
 
+
+app.get('/api/tasks', getToDoList);
+app.post('/api/tasks', addTask);
+app.delete('/api/tasks/:id', deleteTask);
 
 async function startServer() {
   try {

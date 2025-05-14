@@ -2,15 +2,16 @@ import React from 'react';
 
 interface ButtonProps {
   onClick: () => void;
-  label: string;
+  label?: string;
+  children?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, label }) => {
+export const EmployeeButton: React.FC<ButtonProps> = ({ onClick, children, label }) => {
   return (
     <button onClick={onClick}>
       {label}
+      {children}
     </button>
   );
 };
 
-export default Button;

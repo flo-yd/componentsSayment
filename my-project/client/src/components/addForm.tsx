@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
-import Button from "./Button";
+import { EmployeeButton } from "./Button";
 import { EmployeeFormData, EmployeeFormProps } from "../types/Props";
 
 
@@ -96,7 +96,7 @@ const AddForm: React.FC<EmployeeFormProps> = ({ onAddEmployee }) => {
           onChange={(e) => handleInputChange("expectedDateOfDefense", e.target.value)}
         />
       </div>
-      <Button label="Add Employee" onClick={handleSubmit} />
+      <EmployeeButton label="Add Employee" onClick={handleSubmit} />
     </div>
   );
 };

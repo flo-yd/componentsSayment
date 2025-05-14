@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EmployeeProps } from "../types/Props";
 import InputField from "./InputField";
-import Button from "./Button";
+import { EmployeeButton } from "./Button";
 
 interface EditFormProps {
   employee: EmployeeProps;
@@ -39,7 +39,7 @@ const EditForm: React.FC<EditFormProps> = ({ employee, onSave}) => {
       <InputField title="Expected Date of Defense" value={formData.expectedDateOfDefense || ""} onChange={(e) => handleChange("expectedDateOfDefense", e.target.value)} />
       
       <div className="flex justify-end gap-2 mt-4">
-        <Button label="Save" onClick={() => onSave(employee.id, formData)} /> 
+        <EmployeeButton label="Save" onClick={() => onSave(employee.id, formData)} /> 
       </div>
     </div>
   );
